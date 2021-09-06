@@ -87,7 +87,8 @@ const roomSchema = new mongoose.Schema({
     ],
     user: {
         type: mongoose.Schema.objectId,
-        ref: "User"
+        ref: "User",
+        required: true
     }
 }, {timestamps: true});
 
