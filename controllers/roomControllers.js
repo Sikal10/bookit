@@ -12,7 +12,7 @@ export const getAllRooms = asyncHandler(async (req, res) => {
 
     const rooms = await apiFeatures.query;
     res.status(200).json({success: true, count: rooms.length, rooms});
-})
+});
 
 // @desc create a new room...POST
 // @route private .../api/rooms
