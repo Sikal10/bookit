@@ -1,11 +1,15 @@
 import Room from "../models/roomModel";
 import ErrorResponse from "../utils/errorHandler";
 import asyncHandler from "../middlewares/asyncHandler";
+import APIFeatures from "../utils/apiFeatures";
 
 // @desc get all rooms
 // @route public... /api/rooms
 export const getAllRooms = asyncHandler(async (req, res) => {
-    const rooms = await Room.find();
+    const apiFeatures = new APIFeatures(Room.find(), req.query);
+    apiFeatures.search();
+
+    const rooms = await apiFeatures.query;
     res.status(200).json({success: true, count: rooms.length, rooms});
 })
 
