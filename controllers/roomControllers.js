@@ -8,6 +8,7 @@ import APIFeatures from "../utils/apiFeatures";
 export const getAllRooms = asyncHandler(async (req, res) => {
     const apiFeatures = new APIFeatures(Room.find(), req.query);
     apiFeatures.search();
+    apiFeatures.filter();
 
     const rooms = await apiFeatures.query;
     res.status(200).json({success: true, count: rooms.length, rooms});
