@@ -6,12 +6,24 @@ import APIFeatures from "../utils/apiFeatures";
 // @desc get all rooms
 // @route public... /api/rooms
 export const getAllRooms = asyncHandler(async (req, res) => {
+    const roomsCount = await Room.countDocuments();
+    const resultsPerPage = 4;
+
     const apiFeatures = new APIFeatures(Room.find(), req.query);
     apiFeatures.search();
     apiFeatures.filter();
 
-    const rooms = await apiFeatures.query;
-    res.status(200).json({success: true, count: rooms.length, rooms});
+    let rooms;
+    await apiFeatures.pagination(resultsPerPage);
+    rooms = await apiFeatures.query
+    let filteredRooms = rooms.length;
+
+    res.status(200).json({
+        success: true,
+        roomsCount,
+        filteredRooms,
+        rooms
+    })
 });
 
 // @desc create a new room...POST

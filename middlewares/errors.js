@@ -1,10 +1,12 @@
 import ErrorResponse from "../utils/errorHandler";
+import colors from "colors";
 
 const onError = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
 
     let error = {...err};
     error.message = err.message
+    console.log(err.stack.red)
 
     //Mongoose bad ObjectID
     if (err.name === "CastError") {

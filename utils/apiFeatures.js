@@ -16,16 +16,25 @@ class APIFeatures {
         return this;
     }
 
-    filter () {
+    filter() {
         const queryCopy = {...this.queryStr}
 
         //remove fields from query
-        const removeFields = ["location"]
+        const removeFields = ["location", "page"]
         removeFields.forEach(param => delete queryCopy[param]);
 
         this.query = this.query.find(queryCopy);
         return this;
     }
+
+    pagination(resultsPerPage) {
+        const currentPage = Number(this.queryStr.page) || 1;
+        const skip = resultsPerPage * (currentPage - 1);
+
+        this.query = this.query.limit(resultsPerPage).skip(skip);
+        return this;
+    }
+
 }
 
 export default APIFeatures;
