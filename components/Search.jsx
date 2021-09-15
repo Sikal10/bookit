@@ -6,7 +6,6 @@ import Room from "./Room";
 
 const Search = () => {
     const router = useRouter();
-
     const [location, setLocation] = useState("");
     const [filteredRoom, setFilteredRoom] = useState([]);
     const [guestsNumber, setGuestsNumber] = useState("");

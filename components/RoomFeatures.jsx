@@ -61,9 +61,8 @@ const RoomFeatures = ({room}) => {
                 </div>: <div className={"flex items-center space-x-2 text-gray-600"}>
                     <XIcon className={"h-5 text-red-600"}/>
                     <p>Room Cleaning</p>
-                </div>}
-
-
+                </div>
+                }
 
             </section>
         </section>

@@ -7,6 +7,6 @@ const SearchResult = ({rooms}) => {
             {rooms.map((room, index) => <RoomItem key={index} room={room} />)}
         </div>
     );
-};
+}
 
 export default SearchResult;
