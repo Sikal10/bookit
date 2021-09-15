@@ -22,7 +22,8 @@ export const getAllRooms = asyncHandler(async (req, res) => {
         success: true,
         roomsCount,
         filteredRooms,
-        rooms
+        rooms,
+        resultsPerPage
     })
 });
 
@@ -36,7 +37,9 @@ export const createRoom = asyncHandler(async (req, res) => {
 // @desc get a single room
 // @route private /api/rooms/:id
 export const getSingleRoom = asyncHandler(async (req, res, next) => {
-    const room = await Room.findById(req.query.id);
+    const {id} = req.query;
+    if (id.length < 10) return res.status(201);
+    const room = await Room.findById(id);
     if (!room) return next(new ErrorResponse("Room not found with the ID", 404));
     res.status(200).json({success: true, room});
 })
